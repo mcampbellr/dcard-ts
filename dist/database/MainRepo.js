@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
-class RepositoryBase {
+class MainRepo {
     constructor(schemaModel) {
         this._model = schemaModel;
     }
@@ -33,5 +33,5 @@ class RepositoryBase {
         return mongoose_1.default.Types.ObjectId.createFromHexString(_id);
     }
 }
-exports.RepositoryBase = RepositoryBase;
-//# sourceMappingURL=MainRepository.js.map
+exports.MainRepo = MainRepo;
+//# sourceMappingURL=MainRepo.js.map

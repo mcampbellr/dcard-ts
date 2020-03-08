@@ -10,4 +10,4 @@ dotenv_1.default.config();
 App_1.default.start(() => {
     console.log(chalk_1.cyan('[Server is running]:'), `On -> http://${process.env.HOST}:${process.env.PORT}`);
 });
-//# sourceMappingURL=server.js.map
+//# sourceMappingURL=Server.js.map

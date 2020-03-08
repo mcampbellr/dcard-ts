@@ -1,26 +1,42 @@
 
 'use strict'
 import {Request, Response} from 'express'
-import UserService from '../services/User.service'
+import UserBusiness from '../business/user.business'
 
-import Result from '../../../helpers/result.helper'
+// import Result from '../../../helpers/result.helper'
 
 class UsersController {
+  private business: UserBusiness = new UserBusiness()
+
+  public async auth (req: Request, res: Response){
+    const { username, password } = req.body
+
+    try {
+      const user = await this.business.findAndPopulate(username)
+
+      res.status(200).send(user)
+    } catch (err) {
+      res.send({error: 'Errror in your request'})
+    }
+  }
+
   public get (_req: Request, res: Response) {
     try {
-      const service = new UserService()
-      service.get((err, result) => {
-        return new Result(res, {
-          statusCode: (err) ? 500 : 200,
-          message: (err) ? err : 'Success',
-          data: result,
-          error: err
-        })
-      })
+      const service = new UserBusiness()
+      console.log(service.get())
+      res.status(200).send({user: 'user', token: 'token'})
     } catch (err) {
       res.send({error: 'Error in your request'})
     }
   }
+
+  // public create (req: Request, res: Response) {
+  //   try {
+      
+  //   } catch (err) {
+      
+  //   }
+  // }
 }
 
 export default new UsersController()

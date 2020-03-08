@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const user_controller_1 = __importDefault(require("./controller/user.controller"));
+const auth_helper_1 = __importDefault(require("../../helpers/auth.helper"));
 class UsersRoutes {
     constructor(app) {
         this.app = app;
@@ -20,9 +21,10 @@ class UsersRoutes {
         this.initPrivateRoutes();
     }
     initPublicRoutes() {
-        this.usersRoutes.get('/', user_controller_1.default.get);
     }
     initPrivateRoutes() {
+        console.log('[GET]', '/users');
+        this.usersRoutes.get('/', auth_helper_1.default.verifyToken, user_controller_1.default.get);
     }
     setRoutes() {
         this.app.use('/users', this.usersRoutes);

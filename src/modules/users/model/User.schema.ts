@@ -1,6 +1,6 @@
 'use strict'
 import mongoose from 'mongoose';
-import InterfaceUserModel from './User.interface'
+import InterfaceUserModel from './user.interface'
 
 const { isEmail } = require('validator')
 

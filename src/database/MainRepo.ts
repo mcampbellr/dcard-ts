@@ -16,7 +16,7 @@ interface InterfaceWrite<T> {
   delete: (_id: string, callback: (error: any, result: any) => void) => void;
 }
 
-export class RepositoryBase<T extends mongoose.Document> implements InterfaceRead<T>, InterfaceWrite<T> {
+export class MainRepo<T extends mongoose.Document> implements InterfaceRead<T>, InterfaceWrite<T> {
   // Arguments
   private _model: mongoose.Model<mongoose.Document>
 

@@ -1,8 +1,8 @@
-import { RepositoryBase } from '../../../database/MainRepository'
-import InterfaceUser from '../model/User.interface'
-import User from '../model/User.schema'
+import { MainRepo } from '../../../database/MainRepo'
+import InterfaceUser from '../model/user.interface'
+import User from '../model/user.schema'
 
-class UserRepo extends RepositoryBase<InterfaceUser> {
+class UserRepo extends MainRepo<InterfaceUser> {
   constructor () {
     super(User)
   }

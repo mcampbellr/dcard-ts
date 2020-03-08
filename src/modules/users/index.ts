@@ -2,7 +2,7 @@
 
 import { Application, Router } from "express";
 import UsersController from "./controller/user.controller";
-// import AuthHelper from '../../helpers/auth.helper'
+import AuthHelper from '../../helpers/auth.helper'
 
 class UsersRoutes {
   private app: Application
@@ -27,10 +27,11 @@ class UsersRoutes {
   }
 
   private initPublicRoutes (): void {
-    this.usersRoutes.get('/', UsersController.get)
   }
-
+  
   private initPrivateRoutes (): void {
+    console.log('[GET]', '/users')
+    this.usersRoutes.get('/', AuthHelper.verifyToken,  UsersController.get)
   }
 
   private setRoutes (): void {

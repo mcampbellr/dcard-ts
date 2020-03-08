@@ -90,4 +90,4 @@ const UserSchema = new Schema({
     timestamps: { createdAt: 'createdAt' }
 });
 exports.default = mongoose_1.default.model('user', UserSchema);
-//# sourceMappingURL=User.schema.js.map
+//# sourceMappingURL=user.schema.js.map
