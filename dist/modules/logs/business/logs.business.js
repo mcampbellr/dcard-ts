@@ -12,29 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_business_1 = __importDefault(require("../business/user.business"));
-class UsersController {
-    auth(req, res) {
+const logs_repo_1 = __importDefault(require("../repository/logs.repo"));
+const log_schema_1 = __importDefault(require("../model/log.schema"));
+class LogsBusiness {
+    constructor() {
+        this.logsRepo = new logs_repo_1.default();
+    }
+    create(message, action, category, diff, user) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { username } = req.body;
-            try {
-                const business = new user_business_1.default();
-                const result = yield business.auth(username);
-                res.status(200).send(result);
-            }
-            catch (err) {
-                res.send({ error: 'Error procesing your request' });
-            }
+            const log = yield this.logsRepo.create(new log_schema_1.default({
+                message,
+                action,
+                category,
+                diff,
+                createdBy: user
+            }));
+            return log;
         });
     }
-    get(_req, res) {
-        try {
-            res.status(200).send({ user: 'user', token: 'token' });
-        }
-        catch (err) {
-            res.send({ error: 'Error procesing your request' });
-        }
-    }
 }
-exports.default = new UsersController();
-//# sourceMappingURL=user.controller.js.map
+exports.default = LogsBusiness;
+//# sourceMappingURL=logs.business.js.map

@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const { isEmail } = require('validator');
 const Schema = mongoose_1.default.Schema;
-const ObjectId = mongoose_1.default.Schema.Types.ObjectId;
-const Mixed = mongoose_1.default.Schema.Types.Mixed;
+const ObjectId = Schema.Types.ObjectId;
+const Mixed = Schema.Types.Mixed;
 const UserSchema = new Schema({
     prefix: String,
     name: {

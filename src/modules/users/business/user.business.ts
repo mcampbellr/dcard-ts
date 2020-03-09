@@ -1,19 +1,31 @@
-// import UserRepo from '../repository/users.repository'
+'use strict'
 
-class UserService implements UserService {
-  // private _userRepo: UserRepo
+import UsersRepo from '../repository/users.repo'
+import LogsBusiness from '../../logs/business/logs.business'
+
+class UsersBusiness implements UsersBusiness {
+  private usersRepo: UsersRepo
+  private logger: LogsBusiness
 
   constructor () {
-    // this._userRepo = new UserRepo()
+    this.usersRepo = new UsersRepo()
+    this.logger = new LogsBusiness()
   }
 
   public get () {
     console.log('Entra al Business')
   }
 
-  public findAndPopulate (username: string) {
-    console.log(username)
+  public async auth (username: string) {
+    const user = await this.usersRepo.findAndPopulate(username)
+    
+    if(!user) {
+      this.logger.create(`Error en inicio de sesión, ${username} no existe en la base de datos`, 'login', 'error')
+      return {error: true, message: 'user not found'}
+    }
+
+    return
   }
 }
 
-export default UserService
+export default UsersBusiness

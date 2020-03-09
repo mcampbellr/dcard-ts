@@ -11,7 +11,7 @@ interface InterfaceRead<T> {
 }
 
 interface InterfaceWrite<T> {
-  create: (item: T, callback: (error: any, result: any) => void) => void;
+  create: (item: T) => Promise<any>;
   update: (_id: mongoose.Types.ObjectId, item: T, callback: (error: any, result: any) => void) => void;
   delete: (_id: string, callback: (error: any, result: any) => void) => void;
 }
@@ -24,8 +24,8 @@ export class MainRepo<T extends mongoose.Document> implements InterfaceRead<T>, 
     this._model = schemaModel;
   }
 
-  create(item: T, callback: (error: any, result: T) => void) {
-    this._model.create(item, callback);
+  async create(item: T) {
+    await this._model.create(item);
   }
 
   retrieve(callback: (error: any, result: T) => void) {

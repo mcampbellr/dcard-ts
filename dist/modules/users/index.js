@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const user_controller_1 = __importDefault(require("./controller/user.controller"));
 const auth_helper_1 = __importDefault(require("../../helpers/auth.helper"));
+const debug = require('debug')('dcard:[User Routes]');
 class UsersRoutes {
     constructor(app) {
         this.app = app;
@@ -21,9 +22,11 @@ class UsersRoutes {
         this.initPrivateRoutes();
     }
     initPublicRoutes() {
+        debug('[POST] /users/auth Auth User [body] : {username, password}');
+        this.usersRoutes.post('/auth', user_controller_1.default.auth);
     }
     initPrivateRoutes() {
-        console.log('[GET]', '/users');
+        debug('[GET] /users');
         this.usersRoutes.get('/', auth_helper_1.default.verifyToken, user_controller_1.default.get);
     }
     setRoutes() {

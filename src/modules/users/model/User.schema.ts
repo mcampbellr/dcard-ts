@@ -5,8 +5,8 @@ import InterfaceUserModel from './user.interface'
 const { isEmail } = require('validator')
 
 const Schema = mongoose.Schema;
-const ObjectId = mongoose.Schema.Types.ObjectId;
-const Mixed = mongoose.Schema.Types.Mixed;
+const ObjectId = Schema.Types.ObjectId;
+const Mixed = Schema.Types.Mixed;
 
 const UserSchema = new Schema({
   prefix: String,

@@ -14,4 +14,4 @@ class UserRepo extends MainRepo_1.MainRepo {
     }
 }
 exports.default = UserRepo;
-//# sourceMappingURL=users.repository.js.map
+//# sourceMappingURL=users.repo.js.map
